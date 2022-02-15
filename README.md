@@ -4,7 +4,7 @@ Install and configure rundeck on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/buluma/ansible-role-rundeck/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-rundeck/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-rundeck/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-rundeck)|[![quality](https://img.shields.io/ansible/quality/58053)](https://galaxy.ansible.com/buluma/rundeck)|[![downloads](https://img.shields.io/ansible/role/d/58053)](https://galaxy.ansible.com/buluma/rundeck)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-rundeck.svg)](https://github.com/buluma/ansible-role-rundeck/releases/)|
+|[![github](https://github.com/buluma/ansible-role-rundeck/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-rundeck/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-rundeck/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-rundeck)|[![quality](https://img.shields.io/ansible/quality/58053)](https://galaxy.ansible.com/buluma/rundeck)|[![downloads](https://img.shields.io/ansible/role/d/58053)](https://galaxy.ansible.com/buluma/rundeck)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-rundeck.svg)](https://github.com/buluma/ansible-role-rundeck/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
