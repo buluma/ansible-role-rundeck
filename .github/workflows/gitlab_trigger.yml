@@ -3,6 +3,7 @@ name: Mirror and run GitLab CI
 
 on: [push]
 
+# TODO: Add to tracker
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
