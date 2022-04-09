@@ -25,8 +25,6 @@ molecule:
       - image: "fedora-systemd"
         tag: "34"
       - image: "fedora-systemd"
-        tag: "35"
-      - image: "fedora-systemd"
         tag: "33"
       - image: "opensuse"
         tag: "latest"
