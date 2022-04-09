@@ -17,7 +17,8 @@
           register: rundeck_connect
           until:
             - rundeck_connect is succeeded
-          retries: 3
+          retries: 10
+          delay: 5
       rescue:
 
         - name: connect to http://locahost:4440
@@ -27,4 +28,5 @@
           register: rundeck_connect
           until:
             - rundeck_connect is succeeded
-          retries: 3
+          retries: 10
+          delay: 5
