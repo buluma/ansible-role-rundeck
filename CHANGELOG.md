@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/buluma/ansible-role-rundeck/tree/HEAD)
+
+[Full Changelog](https://github.com/buluma/ansible-role-rundeck/compare/1.0.2...HEAD)
+
+**Closed issues:**
+
+- Update buluma/todo-to-issue-action@v1.0.1 @buluma [\#12](https://github.com/buluma/ansible-role-rundeck/issues/12)
+
 ## [1.0.2](https://github.com/buluma/ansible-role-rundeck/tree/1.0.2) (2022-03-31)
 
 [Full Changelog](https://github.com/buluma/ansible-role-rundeck/compare/1.0.1...1.0.2)
