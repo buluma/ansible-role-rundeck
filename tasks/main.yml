@@ -4,7 +4,7 @@
 - name: Import assert.yml
   ansible.builtin.import_tasks:
     file: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 - name: Create rundeck directories
@@ -43,7 +43,7 @@
     dest: "{{ rundeck_rdeckbase }}/server/config/rundeck-config.properties"
     line: "{{ item.parameter }} = {{ item.value }}"
     regexp: "^{{ item.parameter }}"
-    create: yes
+    create: true
     mode: "0644"
   notify:
     - Restart rundeck
@@ -56,7 +56,7 @@
     dest: "{{ rundeck_rdeckbase }}/etc/framework.properties"
     line: "{{ item.parameter }} = {{ item.value }}"
     regexp: "^{{ item.parameter }}"
-    create: yes
+    create: true
     mode: "0644"
   notify:
     - Restart rundeck
@@ -98,4 +98,4 @@
   ansible.builtin.service:
     name: rundeck
     state: started
-    enabled: yes
+    enabled: true
