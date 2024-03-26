@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: buluma.rundeck
@@ -27,8 +27,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  gather_facts: no
-  become: yes
+  gather_facts: false
+  become: true
 
   roles:
     - role: buluma.bootstrap
@@ -63,7 +63,7 @@ rundeck_port: 4440
 rundeck_address: "{{ ansible_all_ipv4_addresses[0] | default('127.0.0.1') }}"
 
 # You can change the context to for example: "/rundeck". An empty value means
-# that no specific context is added.
+# that false specific context is added.
 rundeck_server_web_context: ""
 
 rundeck_config:
@@ -112,7 +112,7 @@ rundeck_framework:
   # - parameter: "framework.log.dispatch.console.format"
   #   value: unset
   - parameter: framework.rundeck.execution.script.tokenexpansion.enabled
-    value: yes
+    value: true
 
 # default users stored in {{ rundeck_rdeckbase }}/server/config/realm.properties
 rundeck_users:
