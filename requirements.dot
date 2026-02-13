@@ -1,0 +1,17 @@
+digraph PhiloDilemma {
+  label = "Michael Buluma" ;
+  overlap=false
+  {
+    "rundeck" [fillcolor=yellow style=filled penwidth=3]
+    "buluma.bootstrap" [fillcolor=green style=filled]
+    "buluma.common" [fillcolor=green style=filled]
+    "buluma.core_dependencies" [fillcolor=green style=filled]
+    "buluma.java" [fillcolor=green style=filled]
+    "buluma.service" [fillcolor=green style=filled]
+  }
+  "rundeck" -> "buluma.bootstrap"
+  "rundeck" -> "buluma.common"
+  "rundeck" -> "buluma.core_dependencies"
+  "rundeck" -> "buluma.java"
+  "rundeck" -> "buluma.service"
+}
