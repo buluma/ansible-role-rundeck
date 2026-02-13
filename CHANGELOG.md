@@ -7,6 +7,8 @@
 **Closed issues:**
 
 - Update buluma/todo-to-issue-action@v1.0.1 @buluma [\#12](https://github.com/buluma/ansible-role-rundeck/issues/12)
+- Update action [\#11](https://github.com/buluma/ansible-role-rundeck/issues/11)
+- rebuild action [\#10](https://github.com/buluma/ansible-role-rundeck/issues/10)
 
 ## [1.0.2](https://github.com/buluma/ansible-role-rundeck/tree/1.0.2) (2022-03-31)
 
