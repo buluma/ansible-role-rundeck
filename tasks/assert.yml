@@ -1,5 +1,4 @@
 ---
-
 - name: assert | Test if rundeck_version is set correctly
   ansible.builtin.assert:
     that:
@@ -11,8 +10,7 @@
   ansible.builtin.assert:
     that:
       - rundeck_release_date is defined
-      - (rundeck_release_date is number and rundeck_release_date > 0) or
-        rundeck_release_date is string
+      - (rundeck_release_date is number and rundeck_release_date > 0) or rundeck_release_date is string
     quiet: true
 
 - name: assert | Test if rundeck_rdeckbase is set correctly
