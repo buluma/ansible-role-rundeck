@@ -11,29 +11,25 @@ Install and configure rundeck on your system.
 This example is taken from [`molecule/default/converge.yml`](https://github.com/buluma/ansible-role-rundeck/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
----
-- name: Converge
-  hosts: all
-  become: true
+- become: true
   gather_facts: true
-
+  hosts: all
+  name: Converge
   roles:
-    - role: buluma.rundeck
+  - role: buluma.rundeck
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-rundeck/blob/master/molecule/default/prepare.yml):
 
 ```yaml
----
-- name: Prepare
-  hosts: all
+- become: true
   gather_facts: false
-  become: true
-
+  hosts: all
+  name: Prepare
   roles:
-    - role: buluma.bootstrap
-    - role: buluma.java
-    - role: buluma.common
+  - role: buluma.bootstrap
+  - role: buluma.java
+  - role: buluma.common
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -43,89 +39,49 @@ Also see a [full explanation and example](https://buluma.github.io/how-to-use-th
 The default values for the variables are set in [`defaults/main.yml`](https://github.com/buluma/ansible-role-rundeck/blob/master/defaults/main.yml):
 
 ```yaml
----
-# defaults file for rundeck
-
-# Rundeck version to install
-rundeck_version: "3.4.9"
-rundeck_release_date: 20211221
-
-# Where to install rundeck.
-rundeck_rdeckbase: /opt/rundeck
-
-# The Xmx memory size in mb. (Stored in: "{{ rundeck_rdeckbase }}/etc/profile".)
-rundeck_xmx: 4096
-rundeck_xms: 256
-rundeck_maxmetaspacesize: 128
-
-# The URL where Rundeck will be served on:
-rundeck_port: 4440
-rundeck_address: "{{ ansible_all_ipv4_addresses[0] | default('127.0.0.1') }}"
-
-# You can change the context to for example: "/rundeck". An empty value means
-# that false specific context is added.
-rundeck_server_web_context: ""
-
+rundeck_address: '{{ ansible_all_ipv4_addresses[0] | default(''127.0.0.1'') }}'
 rundeck_config:
-  - parameter: server.address
-    value: "{{ rundeck_address }}"
-  - parameter: grails.serverURL
-    value: "{{ rundeck_url }}"
-  - parameter: dataSource.url
-    value: "jdbc:h2:file:/opt/rundeck/server/data/grailsdb;MVCC=true"
-#   To connect to MySQL, use these settings. (Database has to be prepared.)
-#   - parameter: dataSource.url
-#     value: "jdbc:mysql://myserver/rundeck?autoReconnect=true&useSSL=false"
-#   - parameter: dataSource.username
-#     value: rundeck
-#   - parameter: dataSource.password
-#     value: rundeck
-#   - parameter: dataSource.driverClassName
-#     value: com.mysql.jdbc.Driver
-
-# The settings for Rundeck. (Stored in: "{{ rundeck_rdeckbase }}/etc/framework.properties".)
+- parameter: server.address
+  value: '{{ rundeck_address }}'
+- parameter: grails.serverURL
+  value: '{{ rundeck_url }}'
+- parameter: dataSource.url
+  value: jdbc:h2:file:/opt/rundeck/server/data/grailsdb;MVCC=true
 rundeck_framework:
-  - parameter: framework.server.hostname
-    value: "{{ ansible_fqdn }}"
-  - parameter: framework.server.name
-    value: "{{ ansible_hostname }}"
-  - parameter: framework.projects.dir
-    value: "{{ rundeck_rdeckbase }}/projects"
-  - parameter: framework.var.dir
-    value: "{{ rundeck_rdeckbase }}/var"
-  - parameter: framework.logs.dir
-    value: "{{ rundeck_rdeckbase }}/var/logs"
-  # - parameter: "framework.server.username"
-  #   value: unset
-  # - parameter: "framework.server.password"
-  #   value: unset
-  - parameter: framework.rundeck.url
-    value: "{{ rundeck_url }}"
-  # - parameter: "framework.ssh.keypath"
-  #   value: unset
-  # - parameter: "framework.ssh.user"
-  #   value: unset
-  - parameter: framework.ssh-connect-timeout
-    value: 0
-  - parameter: framework.ssh-command-timeout
-    value: 0
-  # - parameter: "framework.log.dispatch.console.format"
-  #   value: unset
-  - parameter: framework.rundeck.execution.script.tokenexpansion.enabled
-    value: true
-
-# default users stored in {{ rundeck_rdeckbase }}/server/config/realm.properties
-rundeck_users:
-  - username: "admin"
-    password: "admin"
-    roles: "user,admin"
-  - username: "user"
-    password: "user"
-    roles: "user"
-
-# Rundeck plugins to install
+- parameter: framework.server.hostname
+  value: '{{ ansible_fqdn }}'
+- parameter: framework.server.name
+  value: '{{ ansible_hostname }}'
+- parameter: framework.projects.dir
+  value: '{{ rundeck_rdeckbase }}/projects'
+- parameter: framework.var.dir
+  value: '{{ rundeck_rdeckbase }}/var'
+- parameter: framework.logs.dir
+  value: '{{ rundeck_rdeckbase }}/var/logs'
+- parameter: framework.rundeck.url
+  value: '{{ rundeck_url }}'
+- parameter: framework.ssh-connect-timeout
+  value: 0
+- parameter: framework.ssh-command-timeout
+  value: 0
+- parameter: framework.rundeck.execution.script.tokenexpansion.enabled
+  value: true
+rundeck_maxmetaspacesize: 128
 rundeck_plugins: []
-# - "https://github.com/Batix/rundeck-ansible-plugin/releases/download/3.1.1/ansible-plugin-3.1.1.jar"
+rundeck_port: 4440
+rundeck_rdeckbase: /opt/rundeck
+rundeck_release_date: 20211221
+rundeck_server_web_context: ''
+rundeck_users:
+- password: admin
+  roles: user,admin
+  username: admin
+- password: user
+  roles: user
+  username: user
+rundeck_version: 3.4.9
+rundeck_xms: 256
+rundeck_xmx: 4096
 ```
 
 ## [Requirements](#requirements)

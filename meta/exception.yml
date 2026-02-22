@@ -1,4 +1,4 @@
 ---
 exceptions:
-  - variation: alpine
-    reason: "Shutting down rundeck: "
+  - reason: "Shutting down rundeck: "
+    variation: alpine
