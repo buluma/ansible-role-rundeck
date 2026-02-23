@@ -1,28 +1,29 @@
-- become: true
-  gather_facts: true
-  hosts: all
-  name: Verify
-  roles:
-  - buluma.core_dependencies
-  tasks:
-  - block:
-    - ansible.builtin.uri:
-        method: GET
-        url: http://{{ ansible_default_ipv4.address }}:4440/user/login
-      delay: 5
-      name: connect to http://{{ ansible_default_ipv4.address }}:4440
-      register: rundeck_connect
-      retries: 10
-      until:
-      - rundeck_connect is succeeded
-    name: connect to rundeck
-    rescue:
-    - ansible.builtin.uri:
-        method: GET
-        url: http://localhost:4440/user/login
-      delay: 5
-      name: connect to http://locahost:4440
-      register: rundeck_connect
-      retries: 10
-      until:
-      - rundeck_connect is succeeded
+---
+  - become: true
+    gather_facts: true
+    hosts: all
+    name: Verify
+    roles:
+      - buluma.core_dependencies
+    tasks:
+      - block:
+          - ansible.builtin.uri:
+              method: GET
+              url: http://{{ ansible_default_ipv4.address }}:4440/user/login
+            delay: 5
+            name: connect to http://{{ ansible_default_ipv4.address }}:4440
+            register: rundeck_connect
+            retries: 10
+            until:
+              - rundeck_connect is succeeded
+        name: connect to rundeck
+        rescue:
+          - ansible.builtin.uri:
+              method: GET
+              url: http://localhost:4440/user/login
+            delay: 5
+            name: connect to http://locahost:4440
+            register: rundeck_connect
+            retries: 10
+            until:
+              - rundeck_connect is succeeded

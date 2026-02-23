@@ -11,25 +11,27 @@ Install and configure rundeck on your system.
 This example is taken from [`molecule/default/converge.yml`](https://github.com/buluma/ansible-role-rundeck/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
-- become: true
-  gather_facts: true
-  hosts: all
-  name: Converge
-  roles:
-  - role: buluma.rundeck
+---
+  - become: true
+    gather_facts: true
+    hosts: all
+    name: Converge
+    roles:
+      - role: buluma.rundeck
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-rundeck/blob/master/molecule/default/prepare.yml):
 
 ```yaml
-- become: true
-  gather_facts: false
-  hosts: all
-  name: Prepare
-  roles:
-  - role: buluma.bootstrap
-  - role: buluma.java
-  - role: buluma.common
+---
+  - become: true
+    gather_facts: false
+    hosts: all
+    name: Prepare
+    roles:
+      - role: buluma.bootstrap
+      - role: buluma.java
+      - role: buluma.common
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -39,46 +41,47 @@ Also see a [full explanation and example](https://buluma.github.io/how-to-use-th
 The default values for the variables are set in [`defaults/main.yml`](https://github.com/buluma/ansible-role-rundeck/blob/master/defaults/main.yml):
 
 ```yaml
-rundeck_address: '{{ ansible_all_ipv4_addresses[0] | default(''127.0.0.1'') }}'
+---
+rundeck_address: "{{ ansible_all_ipv4_addresses[0] | default('127.0.0.1') }}"
 rundeck_config:
-- parameter: server.address
-  value: '{{ rundeck_address }}'
-- parameter: grails.serverURL
-  value: '{{ rundeck_url }}'
-- parameter: dataSource.url
-  value: jdbc:h2:file:/opt/rundeck/server/data/grailsdb;MVCC=true
+  - parameter: server.address
+    value: "{{ rundeck_address }}"
+  - parameter: grails.serverURL
+    value: "{{ rundeck_url }}"
+  - parameter: dataSource.url
+    value: jdbc:h2:file:/opt/rundeck/server/data/grailsdb;MVCC=true
 rundeck_framework:
-- parameter: framework.server.hostname
-  value: '{{ ansible_fqdn }}'
-- parameter: framework.server.name
-  value: '{{ ansible_hostname }}'
-- parameter: framework.projects.dir
-  value: '{{ rundeck_rdeckbase }}/projects'
-- parameter: framework.var.dir
-  value: '{{ rundeck_rdeckbase }}/var'
-- parameter: framework.logs.dir
-  value: '{{ rundeck_rdeckbase }}/var/logs'
-- parameter: framework.rundeck.url
-  value: '{{ rundeck_url }}'
-- parameter: framework.ssh-connect-timeout
-  value: 0
-- parameter: framework.ssh-command-timeout
-  value: 0
-- parameter: framework.rundeck.execution.script.tokenexpansion.enabled
-  value: true
+  - parameter: framework.server.hostname
+    value: "{{ ansible_fqdn }}"
+  - parameter: framework.server.name
+    value: "{{ ansible_hostname }}"
+  - parameter: framework.projects.dir
+    value: "{{ rundeck_rdeckbase }}/projects"
+  - parameter: framework.var.dir
+    value: "{{ rundeck_rdeckbase }}/var"
+  - parameter: framework.logs.dir
+    value: "{{ rundeck_rdeckbase }}/var/logs"
+  - parameter: framework.rundeck.url
+    value: "{{ rundeck_url }}"
+  - parameter: framework.ssh-connect-timeout
+    value: 0
+  - parameter: framework.ssh-command-timeout
+    value: 0
+  - parameter: framework.rundeck.execution.script.tokenexpansion.enabled
+    value: true
 rundeck_maxmetaspacesize: 128
 rundeck_plugins: []
 rundeck_port: 4440
 rundeck_rdeckbase: /opt/rundeck
 rundeck_release_date: 20211221
-rundeck_server_web_context: ''
+rundeck_server_web_context: ""
 rundeck_users:
-- password: admin
-  roles: user,admin
-  username: admin
-- password: user
-  roles: user
-  username: user
+  - password: admin
+    roles: user,admin
+    username: admin
+  - password: user
+    roles: user
+    username: user
 rundeck_version: 3.4.9
 rundeck_xms: 256
 rundeck_xmx: 4096
