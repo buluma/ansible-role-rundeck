@@ -4,6 +4,6 @@
   hosts: all
   name: Prepare
   roles:
-  - role: buluma.bootstrap
-  - role: buluma.java
-  - role: buluma.common
+    - role: buluma.bootstrap
+    - role: buluma.java
+    - role: buluma.common

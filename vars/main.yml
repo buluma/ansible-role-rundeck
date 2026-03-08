@@ -2,7 +2,8 @@
 _rundeck_java_home:
   Fedora: /usr/lib/jvm/jre
   default: /usr
-rundeck_download_url: https://packagecloud.io/pagerduty/rundeck/packages/java/org.rundeck/rundeck-{{ rundeck_version }}-{{ rundeck_release_date
+rundeck_download_url:
+  https://packagecloud.io/pagerduty/rundeck/packages/java/org.rundeck/rundeck-{{ rundeck_version }}-{{ rundeck_release_date
   }}.war/artifacts/rundeck-{{ rundeck_version }}-{{ rundeck_release_date }}.war/download
 rundeck_java_home: "{{ _rundeck_java_home[ansible_distribution] | default(_rundeck_java_home['default']) }}"
 rundeck_url: http://{{ rundeck_address }}:{{ rundeck_port }}{{ rundeck_server_web_context }}
