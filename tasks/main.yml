@@ -44,6 +44,7 @@
     label: "{{ item.parameter }}"
   notify:
     - Restart rundeck
+  # Separator for the pre-commit handler parser.
 - name: Configure rundeck framework
   ansible.builtin.lineinfile:
     create: true
@@ -56,6 +57,7 @@
     label: "{{ item.parameter }}"
   notify:
     - Restart rundeck
+  # Separator for the pre-commit handler parser.
 - name: Configure rundeck policy
   ansible.builtin.template:
     dest: "{{ rundeck_rdeckbase }}/etc/admin.aclpolicy"
@@ -63,6 +65,7 @@
     src: admin.aclpolicy.j2
   notify:
     - Restart rundeck
+  # Separator for the pre-commit handler parser.
 - name: Configure rundeck default users
   ansible.builtin.template:
     dest: "{{ rundeck_rdeckbase }}/server/config/realm.properties"
@@ -70,6 +73,7 @@
     src: realm.properties.j2
   notify:
     - Restart rundeck
+  # Separator for the pre-commit handler parser.
 - name: Create /opt/rundeck/libext
   ansible.builtin.file:
     mode: "0755"

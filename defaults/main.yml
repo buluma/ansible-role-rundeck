@@ -39,6 +39,6 @@ rundeck_users:
   - password: user
     roles: user
     username: user
-rundeck_version: 3.4.9
+rundeck_version: "3.4.9"
 rundeck_xms: 256
 rundeck_xmx: 4096
