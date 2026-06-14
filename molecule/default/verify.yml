@@ -9,9 +9,9 @@
     - block:
         - ansible.builtin.uri:
             method: GET
-            url: http://{{ ansible_default_ipv4.address }}:4440/user/login
+            url: http://{{ ansible_facts['default_ipv4'].address }}:4440/user/login
           delay: 5
-          name: connect to http://{{ ansible_default_ipv4.address }}:4440
+          name: connect to http://{{ ansible_facts['default_ipv4'].address }}:4440
           register: rundeck_connect
           retries: 10
           until:
