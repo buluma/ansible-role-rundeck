@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/buluma/ansible-role-rundeck/tree/HEAD)
+
+[Full Changelog](https://github.com/buluma/ansible-role-rundeck/compare/26.6.0...HEAD)
+
+**Closed issues:**
+
+- Add to tracker [\#3](https://github.com/buluma/ansible-role-rundeck/issues/3)
+
 ## [26.6.0](https://github.com/buluma/ansible-role-rundeck/tree/26.6.0) (2026-06-14)
 
 [Full Changelog](https://github.com/buluma/ansible-role-rundeck/compare/1.0.2...26.6.0)
