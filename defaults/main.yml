@@ -1,5 +1,5 @@
 ---
-rundeck_address: "{{ ansible_facts.all_ipv4_addresses[0] | default('127.0.0.1') }}"
+rundeck_address: "{{ ansible_all_ipv4_addresses[0] | default('127.0.0.1') }}"
 rundeck_config:
   - parameter: server.address
     value: "{{ rundeck_address }}"
@@ -9,9 +9,9 @@ rundeck_config:
     value: jdbc:h2:file:/opt/rundeck/server/data/grailsdb;MVCC=true
 rundeck_framework:
   - parameter: framework.server.hostname
-    value: "{{ ansible_facts.fqdn }}"
+    value: "{{ ansible_facts['fqdn'] }}"
   - parameter: framework.server.name
-    value: "{{ ansible_facts.hostname }}"
+    value: "{{ ansible_facts['hostname'] }}"
   - parameter: framework.projects.dir
     value: "{{ rundeck_rdeckbase }}/projects"
   - parameter: framework.var.dir
