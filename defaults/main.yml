@@ -38,7 +38,7 @@ rundeck_maxmetaspacesize: 128
 rundeck_plugins: []
 rundeck_port: 4440
 rundeck_rdeckbase: /opt/rundeck
-rundeck_release_date: 20260629
+rundeck_release_date: 20261022
 rundeck_server_web_context: ""
 rundeck_users:
   - password: admin
@@ -47,6 +47,6 @@ rundeck_users:
   - password: user
     roles: user
     username: user
-rundeck_version: "6.0.0"
+rundeck_version: "6.3.0"
 rundeck_xms: 256
 rundeck_xmx: 4096
