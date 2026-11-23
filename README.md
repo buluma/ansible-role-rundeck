@@ -79,7 +79,15 @@ rundeck_config:
   - parameter: grails.serverURL
     value: "{{ rundeck_url }}"
   - parameter: dataSource.url
-    value: jdbc:h2:file:/opt/rundeck/server/data/grailsdb;MVCC=true
+    value: jdbc:h2:file:/opt/rundeck/server/data/grailsdb;DB_CLOSE_ON_EXIT=FALSE;NON_KEYWORDS=MONTH,HOUR,MINUTE,YEAR,SECONDS
+  - parameter: dataSource.driverClassName
+    value: org.h2.Driver
+  - parameter: dataSource.username
+    value: sa
+  - parameter: dataSource.password
+    value: ""
+  - parameter: dataSource.dialect
+    value: org.hibernate.dialect.H2Dialect
 rundeck_framework:
   - parameter: framework.server.hostname
     value: "{{ ansible_facts['fqdn'] }}"
@@ -103,7 +111,7 @@ rundeck_maxmetaspacesize: 128
 rundeck_plugins: []
 rundeck_port: 4440
 rundeck_rdeckbase: /opt/rundeck
-rundeck_release_date: 20211221
+rundeck_release_date: 20261022
 rundeck_server_web_context: ""
 rundeck_users:
   - password: admin
@@ -112,7 +120,7 @@ rundeck_users:
   - password: user
     roles: user
     username: user
-rundeck_version: "3.4.9"
+rundeck_version: "6.3.0"
 rundeck_xms: 256
 rundeck_xmx: 4096
 ```
