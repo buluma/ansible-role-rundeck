@@ -61,6 +61,11 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   roles:
     - role: buluma.bootstrap
     - role: buluma.java
+      # Rundeck 6 needs Java 17 or newer; EL 9 defaults to Java 11, and the
+      # other platforms already default to a newer Java (EL 10, Debian 13 and
+      # Fedora 44 do not package Java 17 at all).
+      vars:
+        java_version: "{{ '17' if ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version'] == '9' else java_default_version }}"
     - role: buluma.common
 ```
 
@@ -79,7 +84,15 @@ rundeck_config:
   - parameter: grails.serverURL
     value: "{{ rundeck_url }}"
   - parameter: dataSource.url
-    value: jdbc:h2:file:/opt/rundeck/server/data/grailsdb;MVCC=true
+    value: jdbc:h2:file:/opt/rundeck/server/data/grailsdb;DB_CLOSE_ON_EXIT=FALSE;NON_KEYWORDS=MONTH,HOUR,MINUTE,YEAR,SECONDS
+  - parameter: dataSource.driverClassName
+    value: org.h2.Driver
+  - parameter: dataSource.username
+    value: sa
+  - parameter: dataSource.password
+    value: ""
+  - parameter: dataSource.dialect
+    value: org.hibernate.dialect.H2Dialect
 rundeck_framework:
   - parameter: framework.server.hostname
     value: "{{ ansible_facts['fqdn'] }}"
@@ -103,7 +116,7 @@ rundeck_maxmetaspacesize: 128
 rundeck_plugins: []
 rundeck_port: 4440
 rundeck_rdeckbase: /opt/rundeck
-rundeck_release_date: 20211221
+rundeck_release_date: 20261022
 rundeck_server_web_context: ""
 rundeck_users:
   - password: admin
@@ -112,7 +125,7 @@ rundeck_users:
   - password: user
     roles: user
     username: user
-rundeck_version: "3.4.9"
+rundeck_version: "6.3.0"
 rundeck_xms: 256
 rundeck_xmx: 4096
 ```
