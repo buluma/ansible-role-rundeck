@@ -61,9 +61,11 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   roles:
     - role: buluma.bootstrap
     - role: buluma.java
-      # Rundeck 6 needs Java 17 or newer; EL 9 defaults to Java 11.
+      # Rundeck 6 needs Java 17 or newer; EL 9 defaults to Java 11, and the
+      # other platforms already default to a newer Java (EL 10, Debian 13 and
+      # Fedora 44 do not package Java 17 at all).
       vars:
-        java_version: "17"
+        java_version: "{{ '17' if ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version'] == '9' else java_default_version }}"
     - role: buluma.common
 ```
 
