@@ -61,6 +61,9 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   roles:
     - role: buluma.bootstrap
     - role: buluma.java
+      # Rundeck 6 needs Java 17 or newer; EL 9 defaults to Java 11.
+      vars:
+        java_version: "17"
     - role: buluma.common
 ```
 
